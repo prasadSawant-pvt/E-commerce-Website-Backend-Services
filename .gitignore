@@ -1,1 +1,4 @@
 /.idea/
+/Order-service/target/
+/Product-Service/target/
+/Inventory-Service/target/
