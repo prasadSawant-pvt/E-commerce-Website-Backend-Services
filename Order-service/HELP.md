@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.prasadProjects.order-service' is invalid and this project uses 'com.prasadProjects.order_service' instead.
+* The original package name 'com.prasadProjects.orderItems-service' is invalid and this project uses 'com.prasadProjects.order_service' instead.
 
 # Getting Started
 

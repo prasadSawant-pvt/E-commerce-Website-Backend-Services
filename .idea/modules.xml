@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot-Microservices-Project-.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot-Microservices-Project-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Order-service/order-service.iml" filepath="$PROJECT_DIR$/Order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Product-Service/product-service.iml" filepath="$PROJECT_DIR$/Product-Service/product-service.iml" />
+    </modules>
+  </component>
+</project>
