@@ -1,6 +1,7 @@
 package com.prasadProjects.order_service.service;
 
 
+import com.prasadProjects.order_service.dto.InventoryResponse;
 import com.prasadProjects.order_service.dto.OrderLineItemsDto;
 import com.prasadProjects.order_service.dto.OrderRequest;
 import com.prasadProjects.order_service.model.Order_items;
@@ -10,17 +11,24 @@ import com.prasadProjects.order_service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class OrderService {
 private final OrderRepository orderRepository;
+private final WebClient webClient;
 
     public void placeOrder(OrderRequest orderRequest){
         BigDecimal totalBillAmount = getTotalBillAmount(orderRequest);
@@ -39,7 +47,24 @@ private final OrderRepository orderRepository;
                         .map(this::mapToDTO).toList())
                 .build();
 
-        orderRepository.save(orderItems);
+                List<String> skuCodeList= orderItems
+                        .getOrderLineItems()
+                        .stream()
+                        .map(OrderLineItems::getSkuCode)
+                        .toList();
+
+        InventoryResponse[] inventoryResponses = webClient.get()
+                .uri("http://localhost:8082/api/inventory",uriBuilder -> uriBuilder.queryParam("skuCodes",skuCodeList).build())
+                .retrieve()
+                .bodyToMono(InventoryResponse[].class)
+                .block();
+        boolean allItemsInStocks= ObjectUtils.isEmpty(inventoryResponses) || skuCodeList.size()!= Arrays.stream(inventoryResponses).count()?false:Arrays.stream(inventoryResponses).allMatch(InventoryResponse::isInStock);
+        if(allItemsInStocks){
+            orderRepository.save(orderItems);
+        }else{
+        throw new IllegalArgumentException(" Products are not in Stock");
+        }
+
     }
 
     public Order_items saveOrder(Order_items orderItems) {

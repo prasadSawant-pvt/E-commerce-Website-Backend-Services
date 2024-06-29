@@ -24,15 +24,15 @@ public class InventoryController {
         log.info("Received inventory check request for skuCode: {}", skuCode);
         return inventoryService.isItemIsInStock(skuCode);
     }
-
-    // http://localhost:8082/api/inventory/iphone-13,iphone13-red
-
-    // http://localhost:8082/api/inventory?skuCode=iphone-13&skuCode=iphone13-red
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
-        log.info("Received inventory check request for skuCode: {}", skuCode);
-        return inventoryService.isInStock(skuCode);
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCodes) {
+        log.info("Received inventory check request for skuCode: {}", skuCodes);
+       try{
+        return inventoryService.isInStock(skuCodes);
+       }catch (Exception e){
+           return inventoryService.isInStock(skuCodes);
+       }
     }
 }
 

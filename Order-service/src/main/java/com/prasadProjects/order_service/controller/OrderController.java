@@ -22,16 +22,20 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> placeOrder(@RequestBody OrderRequest orderRequest){
-        orderService.placeOrder(orderRequest);
-        return new ResponseEntity<>("Order_items Placed Successfully", HttpStatus.OK);
+        try {
+            orderService.placeOrder(orderRequest);
+            return new ResponseEntity<>("Order_items Placed Successfully", HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>("Order_items Failed to Place ", HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PostMapping("/saveAll")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String placeOrder(@RequestBody List<OrderRequest> orderRequest){
-        orderService.placeOrderForAll(orderRequest);
-        return "Order_items Placed Successfully for All";
-    }
+//    @PostMapping("/saveAll")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public String placeOrder(@RequestBody List<OrderRequest> orderRequest){
+//        orderService.placeOrderForAll(orderRequest);
+//        return "Order_items Placed Successfully for All";
+//    }
 
     @GetMapping
     public ResponseEntity<List<Order_items>> getAllOrders() {
