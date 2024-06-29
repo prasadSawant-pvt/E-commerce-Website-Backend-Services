@@ -12,7 +12,7 @@
 	<artifactId>inventory-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>inventory-service</name>
-	<description>E-Commerce Microservices -Order Service</description>
+	<description>E-Commerce Microservices -Inventory Service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -54,8 +54,33 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.prasadProjects</groupId>
+			<artifactId>inventory-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!--		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-netflix-eureka-client</artifactId>-->
+<!--			<version>2.2.9.RELEASE</version>-->
+<!--		</dependency>-->
 	</dependencies>
-
+<!--	<dependencyManagement>-->
+<!--		<dependencies>-->
+<!--			<dependency>-->
+<!--					<groupId>org.springframework.cloud</groupId>-->
+<!--					<artifactId>spring-cloud-dependencies</artifactId>-->
+<!--					<version>2023.0.2</version>-->
+<!--					<type>pom</type>-->
+<!--					<scope>import</scope>-->
+<!--			</dependency>-->
+<!--		</dependencies>-->
+<!--	</dependencyManagement>-->
 	<build>
 		<plugins>
 			<plugin>

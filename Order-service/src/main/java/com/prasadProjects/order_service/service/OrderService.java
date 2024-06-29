@@ -28,7 +28,8 @@ import static java.util.stream.Collectors.toList;
 @Transactional
 public class OrderService {
 private final OrderRepository orderRepository;
-private final WebClient webClient;
+//private final WebClient webClient;
+private final WebClient.Builder webClientBuilder;
 
     public void placeOrder(OrderRequest orderRequest){
         BigDecimal totalBillAmount = getTotalBillAmount(orderRequest);
@@ -53,8 +54,8 @@ private final WebClient webClient;
                         .map(OrderLineItems::getSkuCode)
                         .toList();
 
-        InventoryResponse[] inventoryResponses = webClient.get()
-                .uri("http://localhost:8082/api/inventory",uriBuilder -> uriBuilder.queryParam("skuCodes",skuCodeList).build())
+        InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",uriBuilder -> uriBuilder.queryParam("skuCodes",skuCodeList).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
                 .block();

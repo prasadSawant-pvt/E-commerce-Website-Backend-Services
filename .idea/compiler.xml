@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/Discover-Service/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -13,14 +16,18 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="inventory-service" target="17" />
-      <module name="microservices-new" target="17" />
-      <module name="order-service" target="17" />
-      <module name="product-service" target="17" />
+      <module name="Discover-Service" target="17" />
+      <module name="discovery-Server" target="17" />
+      <module name="Discovery-Server" target="17" />
+      <module name="Discovery-Service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Discover-Service" options="-parameters" />
+      <module name="Discovery-Server" options="-parameters" />
+      <module name="Discovery-Service" options="-parameters" />
+      <module name="discovery-Server" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
