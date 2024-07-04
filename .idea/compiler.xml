@@ -13,12 +13,13 @@
         <module name="product-service" />
         <module name="order-service" />
         <module name="inventory-service" />
+        <module name="api-Gateway" />
+        <module name="Discovery-Server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Discover-Service" target="17" />
       <module name="discovery-Server" target="17" />
-      <module name="Discovery-Server" target="17" />
       <module name="Discovery-Service" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -27,6 +28,7 @@
       <module name="Discover-Service" options="-parameters" />
       <module name="Discovery-Server" options="-parameters" />
       <module name="Discovery-Service" options="-parameters" />
+      <module name="api-Gateway" options="-parameters" />
       <module name="discovery-Server" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
