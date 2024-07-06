@@ -64,9 +64,11 @@ Ensure you have the following installed:
 
 #### Without Docker
 1. **Build the applications:**
+   ```sh
    mvn clean verify -DskipTests
 2. **Run the applications:**
    Navigate to each service folder and run:
+   ```sh
    mvn spring-boot:run
 
 ### Accessing Services
