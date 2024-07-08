@@ -7,7 +7,7 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: order-service
-      POSTGRES_USER: ptechie
+      POSTGRES_USER: prasad
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
@@ -24,7 +24,7 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: inventory-service
-      POSTGRES_USER: ptechie
+      POSTGRES_USER: prasad
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
@@ -110,7 +110,7 @@ services:
 
   ## Eureka Server
   discovery-server:
-    image: microservices-project/discovery-server:latest
+    image: prasad8298/discovery-server:latest
     container_name: discovery-server
     ports:
       - "8761:8761"
@@ -120,7 +120,7 @@ services:
       - zipkin
 
   api-gateway:
-    image: microservices-project/api-gateway:latest
+    image: prasad8298/api-gateway:latest
     container_name: api-gateway
     ports:
       - "8181:8080"
@@ -137,7 +137,7 @@ services:
   ## Product-Service Docker Compose Config
   product-service:
     container_name: product-service
-    image: microservices-project/product-service:latest
+    image: prasad8298/product-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
@@ -148,7 +148,7 @@ services:
   ## Order-Service Docker Compose Config
   order-service:
     container_name: order-service
-    image: microservices-project/order-service:latest
+    image: prasad8298/order-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-order:5431/order-service
@@ -162,7 +162,7 @@ services:
   ## Inventory-Service Docker Compose Config
   inventory-service:
     container_name: inventory-service
-    image: microservices-project/inventory-service:latest
+    image: prasad8298/inventory-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-inventory:5432/inventory-service
@@ -174,7 +174,7 @@ services:
   ## Notification-Service Docker Compose Config
   notification-service:
     container_name: notification-service
-    image: microservices-project/notification-service:latest
+    image: prasad8298/notification-service:latest
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
