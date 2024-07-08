@@ -59,7 +59,7 @@ public class OrderService {
                 boolean allItemsInStocks = areAllItemsInStock(inventoryResponses, skuCodeList);
                 if (allItemsInStocks) {
                     orderRepository.save(orderItems);
-                    kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(orderItems.getOrderNumber()));
+                    kafkaTemplate.send("notificationTopic", OrderPlacedEvent.builder().orderNumber(orderItems.getOrderNumber()).email(orderRequest.getEmail()).build());
                     log.info("Order placed and notification sent successfully for order number: {}", orderItems.getOrderNumber());
                 } else {
                     throw new IllegalArgumentException("Products are not in stock");

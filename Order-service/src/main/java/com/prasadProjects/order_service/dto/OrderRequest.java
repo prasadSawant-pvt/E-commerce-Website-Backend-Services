@@ -26,6 +26,7 @@ public class OrderRequest {
     private String billingAddress;
     private Status status; // e.g., enums PENDING, PROCESSING, SHIPPED, DELIVERED
     private PaymentMethod paymentMethod;// e.g enums  UPI,CARD,CASH,NET_BANKING,WALLET
+    private String email;
 }
 
 
