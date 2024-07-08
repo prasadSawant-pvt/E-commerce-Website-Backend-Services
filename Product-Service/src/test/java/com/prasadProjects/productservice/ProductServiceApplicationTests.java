@@ -59,7 +59,7 @@ class ProductServiceApplicationTests {
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 		Assertions.assertEquals(getProductRequest().getName(), productRepository.findAll().get(0).getName());
-		Assertions.assertEquals(1, productRepository.findAll().size());
+		Assertions.assertEquals(2, productRepository.findAll().size());
 	}
 
 

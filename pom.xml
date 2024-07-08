@@ -13,21 +13,23 @@
 
     <groupId>com.prasadProjects</groupId>
     <artifactId>microservices-new</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>product-service</module>
-        <module>order-service</module>
-        <module>inventory-service</module>
-        <module>Discovery-Server</module>
-        <module>api-Gateway</module>
-    </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
+
+    <modules>
+        <module>api-gateway</module>
+        <module>product-service</module>
+        <module>order-service</module>
+        <module>inventory-service</module>
+        <module>notification-service</module>
+        <module>discovery-server</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
@@ -64,7 +66,7 @@
                         <image>eclipse-temurin:17.0.4.1_1-jre</image>
                     </from>
                     <to>
-                        <image>microservices-tutorial/${project.artifactId}</image>
+                        <image>docker.io/prasad8298/${project.artifactId}</image>
                     </to>
                 </configuration>
                 <executions>

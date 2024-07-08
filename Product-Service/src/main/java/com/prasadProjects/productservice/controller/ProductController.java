@@ -1,6 +1,5 @@
 package com.prasadProjects.productservice.controller;
 
-
 import com.prasadProjects.productservice.dto.ProductRequest;
 import com.prasadProjects.productservice.dto.ProductResponse;
 import com.prasadProjects.productservice.model.ProductType;
@@ -19,48 +18,72 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
+
     private final ProductService productService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createProduct(@RequestBody ProductRequest productRequest) {
-
-        log.info("Saving Product Details");
-        productService.createProduct(productRequest);
+        log.info("Request received to create product: {}", productRequest);
+        try {
+            productService.createProduct(productRequest);
+            log.info("Product created successfully: {}", productRequest);
+        } catch (Exception e) {
+            log.error("Error occurred while creating product: {}", productRequest, e);
+            throw new RuntimeException("Unable to create product", e);
+        }
     }
 
     @GetMapping("/{category}")
     public ResponseEntity<List<ProductResponse>> getProductBasedOnCategory(@PathVariable ProductType category) {
-        List<ProductResponse> productResponses = null;
-        log.info("Get Product Details based on {} category.", category.name());
+        log.info("Request received to get products based on category: {}", category.name());
         try {
-            if (!ObjectUtils.isEmpty(category)) {
-                productResponses = productService.getProductsByCategory(category);
-                if (!ObjectUtils.isEmpty(productResponses)) {
-                    return ResponseEntity.status(HttpStatus.OK).body(productResponses);
-                }
+            if (ObjectUtils.isEmpty(category)) {
+                log.warn("Category is empty");
+                return ResponseEntity.badRequest().build();
             }
-        } catch (Exception e) {
-            log.error("Exception occur while fetching data", e);
-        }
 
-        return null;
+            List<ProductResponse> productResponses = productService.getProductsByCategory(category);
+            if (ObjectUtils.isEmpty(productResponses)) {
+                log.warn("No products found for category: {}", category.name());
+                return ResponseEntity.noContent().build();
+            }
+
+            log.info("Products retrieved successfully for category: {}", category.name());
+            return ResponseEntity.ok(productResponses);
+        } catch (Exception e) {
+            log.error("Error occurred while fetching products for category: {}", category.name(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<ProductResponse>> getProductListByFilter(@RequestParam(name = "brand",required = false) String brand
-            , @RequestParam(name = "name",required = false) String name, @RequestParam(name = "year",required = false) String year) {
-        List<ProductResponse> productResponses;
-        productResponses = productService.filterProductList(brand, name, year);
-        return ResponseEntity.status(HttpStatus.OK).body(productResponses);
+    public ResponseEntity<List<ProductResponse>> getProductListByFilter(
+            @RequestParam(name = "brand", required = false) String brand,
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "year", required = false) String year) {
+        log.info("Request received to get products by filter - brand: {}, name: {}, year: {}", brand, name, year);
+        try {
+            List<ProductResponse> productResponses = productService.filterProductList(brand, name, year);
+            log.info("Products retrieved successfully by filter");
+            return ResponseEntity.ok(productResponses);
+        } catch (Exception e) {
+            log.error("Error occurred while filtering products", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> getAllProducts() {
-        log.info("Get All Product Details");
-        return productService.getAllProducts();
+        log.info("Request received to get all products");
+        try {
+            List<ProductResponse> productResponses = productService.getAllProducts();
+            log.info("All products retrieved successfully");
+            return productResponses;
+        } catch (Exception e) {
+            log.error("Error occurred while fetching all products", e);
+            throw new RuntimeException("Unable to fetch all products", e);
+        }
     }
-
 }

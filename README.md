@@ -60,6 +60,7 @@ Ensure you have the following installed:
    mvn clean package -DskipTests
 
 2. **Start the applications**
+   ```sh
    docker-compose up -d
 
 #### Without Docker
@@ -67,7 +68,8 @@ Ensure you have the following installed:
    ```sh
    mvn clean verify -DskipTests
 2. **Run the applications:**
-   Navigate to each service folder and run:
+   
+   *Navigate to each service folder and run*
    ```sh
    mvn spring-boot:run
 

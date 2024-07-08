@@ -9,12 +9,14 @@
         <option value="$PROJECT_DIR$/inventory-service/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/api-Gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/Discovery-Server/pom.xml" />
+        <option value="$PROJECT_DIR$/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Discover-Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Discovery-Server/pom.xml" />
         <option value="$PROJECT_DIR$/discovery-Server/pom.xml" />
       </set>
     </option>

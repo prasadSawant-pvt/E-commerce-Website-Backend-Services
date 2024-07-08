@@ -3,14 +3,13 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.prasadProjects</groupId>
+		<artifactId>microservices-new</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>com.prasadProjects</groupId>
+
 	<artifactId>inventory-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>inventory-service</name>
 	<description>E-Commerce Microservices -Inventory Service</description>
 	<url/>
@@ -60,27 +59,23 @@
 			<version>4.1.2</version>
 		</dependency>
 		<dependency>
-			<groupId>com.prasadProjects</groupId>
-			<artifactId>inventory-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-netflix-eureka-client</artifactId>-->
-<!--			<version>2.2.9.RELEASE</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
 	</dependencies>
-<!--	<dependencyManagement>-->
-<!--		<dependencies>-->
-<!--			<dependency>-->
-<!--					<groupId>org.springframework.cloud</groupId>-->
-<!--					<artifactId>spring-cloud-dependencies</artifactId>-->
-<!--					<version>2023.0.2</version>-->
-<!--					<type>pom</type>-->
-<!--					<scope>import</scope>-->
-<!--			</dependency>-->
-<!--		</dependencies>-->
-<!--	</dependencyManagement>-->
 	<build>
 		<plugins>
 			<plugin>
